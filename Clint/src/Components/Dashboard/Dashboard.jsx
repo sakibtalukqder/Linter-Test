@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
+import HashLoader from "react-spinners/HashLoader";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import HashLoader from "react-spinners/HashLoader";
+
+// const baseUrl = "http://localhost:2023"
+const baseUrl = "https://frienemie-phoenbook.onrender.com"
 
 const Dashboard = () => {
   const [Data, setData] = useState([]);
@@ -13,7 +16,7 @@ const Dashboard = () => {
 
   async function getData() {
     setLoading(true);
-    const response = await fetch("http://localhost:2023/route/rd");
+    const response = await fetch(`${baseUrl}/route/rd`);
     const result = await response.json();
     console.log("result..", result);
     if (!response.ok) {
@@ -33,7 +36,7 @@ const Dashboard = () => {
 
   async function Delete(ID) {
     setLoading(true);
-    const responce = await fetch(`http://localhost:2023/route/del/${ID}`, {
+    const responce = await fetch(`${baseUrl}/route/del/${ID}`, {
       method: "DELETE",
     });
     const delResult = await responce.json();

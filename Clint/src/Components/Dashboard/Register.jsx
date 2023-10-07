@@ -5,6 +5,9 @@ import HashLoader from "react-spinners/HashLoader";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+// const baseUrl = "http://localhost:2023"
+const baseUrl = "https://frienemie-phoenbook.onrender.com"
+
 const Register = () => {
 
     // Image Upload
@@ -72,7 +75,7 @@ const Register = () => {
             const NewUser = { Name, Email, image: url, Phoen_No }
             console.log(NewUser);
 
-            const responce = await fetch("http://localhost:2023/route/cr", {
+            const responce = await fetch(`${baseUrl}/route/cr`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

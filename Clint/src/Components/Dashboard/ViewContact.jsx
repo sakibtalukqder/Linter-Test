@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 
+import HashLoader from "react-spinners/HashLoader";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import HashLoader from "react-spinners/HashLoader";
+
+
+// const baseUrl = "http://localhost:2023"
+const baseUrl = "https://frienemie-phoenbook.onrender.com"
 
 
 const ViewContact = () => {
@@ -18,7 +22,7 @@ const ViewContact = () => {
   const getData = async () => {
     setLoading(true);
     try {
-      const responce = await fetch(`http://localhost:2023/route/get/${id}`)
+      const responce = await fetch(`${baseUrl}/route/get/${id}`)
       const Data = await responce.json();
       setData([Data]);
       console.log(Data);
@@ -35,7 +39,7 @@ const ViewContact = () => {
   // Delete Function 
   async function Delete(ID) {
     setLoading(true);
-    const responce = await fetch(`http://localhost:2023/route/del/${ID}`, {
+    const responce = await fetch(`${baseUrl}/route/del/${ID}`, {
       method: "DELETE",
     });
     const delResult = await responce.json();

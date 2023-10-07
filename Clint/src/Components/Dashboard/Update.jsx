@@ -4,6 +4,10 @@ import HashLoader from "react-spinners/HashLoader";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+
+// const baseUrl = "http://localhost:2023"
+const baseUrl = "https://frienemie-phoenbook.onrender.com"
+
 const Update = () => {
 
     const [image, setImage] = useState(null);
@@ -54,7 +58,7 @@ const Update = () => {
     const getData = async () => {
 
         setLoading(true);
-        const responce = await fetch(`http://localhost:2023/route/get/${id}`)
+        const responce = await fetch(`/route/get/${id}`)
         const result = await responce.json();
 
         if (responce.ok) {
@@ -84,7 +88,7 @@ const Update = () => {
 
         const updatedUser = { Name, Email, Phoen_No, image: url };
         // console.log(updatedUser);
-        const response = await fetch(`http://localhost:2023/route/get/up/${id}`, {
+        const response = await fetch(`${baseUrl}/route/get/up/${id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
