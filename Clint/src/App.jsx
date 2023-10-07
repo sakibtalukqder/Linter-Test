@@ -53,7 +53,7 @@ const App = () => {
   );
 
   return (
-    <div className="container mx-auto px-1 lg:px-16">
+    <div className="container mx-auto lg:px-16">
       <ScrollTop />
       <Navbar />
       <Routes>{AppComponents}</Routes>

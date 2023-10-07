@@ -6,10 +6,10 @@ import TeamMembers from "./TeamMembers";
 const About = () => {
   return (
     <div>
-      <div className="hero h-[85vh]" style={{ backgroundImage: `url(${img})` }}>
+      <div className="hero h-[100vh] md:h-[85vh]" style={{ backgroundImage: `url(${img})` }}>
         <div className="hero-overlay bg-opacity-90"></div>
         <div className="hero-content flex-col lg:flex-row-reverse text-white">
-          <img src={img} className=" w-9/12 md:w-1/3 rounded" alt="" />
+          <img src={img} className=" hidden md:flex md:w-1/3 rounded" alt="" />
           <div className=" w-full lg:w-9/12">
             <div className=" max-w-2xl">
               <h1 className="mb-5 text-5xl font-bold">About Frienemie</h1>
@@ -20,8 +20,6 @@ const About = () => {
         </div>
       </div>
       <br />
-
-
       <hr />
       <div className="py-8 md:py-4">
         <Link to="/about/members#" className="btn btn-outline btn-accent w-full rounded-none">Haveing Troublr ? Meat Our Support Team</Link>
@@ -32,12 +30,9 @@ const About = () => {
         </figure>
       </div>
       <br />
-
       <p className="text-center py-4 text-white text-3xl font-bold bg-blue-500">
         Stay With Frienemie, ❤
       </p>
-
-
     </div>
   );
 };

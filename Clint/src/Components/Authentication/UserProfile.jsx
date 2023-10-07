@@ -9,6 +9,7 @@ const UserProfile = () => {
   const user = JSON.parse(localStorage.getItem("User"));
   const Data = [user];
   const nevigate = useNavigate();
+
   // Sinout Function
   const Sinout = () => {
     signOut(auth)
@@ -98,7 +99,7 @@ const UserProfile = () => {
             <div key={index}>
               <div className="hero (bg-slate-300) bg-gradient-to-r from-slate-300 via-slate-200 to-slate-100 w-full rounded shadow-2xl">
                 <div className="hero-content flex-col lg:flex-row-reverse shadow-xl">
-                  <figure className=" w-60 h-60 overflow-hidden rounded flex justify-center items-center">
+                  <figure className="w-72 h-72 overflow-hidden rounded flex justify-center items-center">
                     <img src={User.photoURL || imgurl} className="shadow-xl" />
                   </figure>
                   <div className="lg:mx-4 mx-0 flex flex-col justify-start items-start">
@@ -107,8 +108,11 @@ const UserProfile = () => {
                       <p className="pb-4 lg:py-3">{User.email}</p>
                     </div>
                     <div className="flex w-full">
-                      <button onClick={Sinout} className="btn btn-outline btn-error rounded-sm ms-0 w-1/2 btn-sm m-4 mb-12 lg:mb-0">Sinout</button>
-                        <button onClick={() => document.getElementById('my_modal_3').showModal()} className="btn btn-outline btn-accent rounded-sm ms-0 btn-sm m-4 mb-12 w-1/2 lg:mb-0">Update Profile </button>
+                      <div className="grid gap-2 grid-cols-2 mb-8 md:mb-0">
+                      <button onClick={Sinout} className="btn btn-outline btn-error rounded-sm btn-sm">Sinout</button>
+                        <button onClick={() => document.getElementById('my_modal_3').showModal()} className="btn btn-outline btn-accent rounded-sm btn-sm">Update Profile </button>
+                      
+                      </div>
                       <div>
                         <dialog id="my_modal_3" className="modal">
                           <div className="modal-box w-full max-w-2xl">

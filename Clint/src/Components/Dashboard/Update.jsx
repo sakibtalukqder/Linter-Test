@@ -200,7 +200,6 @@ const Update = () => {
                         </div>
                     </div>
             }
-
         </div>
     );
 };
