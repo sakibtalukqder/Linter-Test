@@ -67,40 +67,36 @@ const Register = () => {
         const url = await UploadImage(image);
         console.log(url);
 
-        if (!image) {
-            return toast.error("Please Insert An Image")
-        } else {
+        setLoading(true);
+        const NewUser = { Name, Email, image: url, Phoen_No }
+        console.log(NewUser);
 
-            setLoading(true);
-            const NewUser = { Name, Email, image: url, Phoen_No }
-            console.log(NewUser);
+        const responce = await fetch(`${baseUrl}/route/cr`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(NewUser),
+        })
 
-            const responce = await fetch(`${baseUrl}/route/cr`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify(NewUser),
-            })
-
-            const result = await responce.json();
-            if (!responce.ok) {
-                console.log(result.error);
-                setError(result.error);
-                toast.error('An Error Detected !', result.error);
-                setLoading(false);
-            }
-            if (responce.ok) {
-                toast.success("Submitted Successfully")
-                console.log(result);
-                setName("");
-                setEmail("");
-                setPhoen_No(0);
-                setError("");
-                nevigate('/dash');
-                setLoading(false);
-            }
+        const result = await responce.json();
+        if (!responce.ok) {
+            console.log(result.error);
+            setError(result.error);
+            toast.error('An Error Detected !', result.error);
+            setLoading(false);
         }
+        if (responce.ok) {
+            toast.success("Submitted Successfully")
+            console.log(result);
+            setName("");
+            setEmail("");
+            setPhoen_No(0);
+            setError("");
+            nevigate('/dash');
+            setLoading(false);
+        }
+
     }
 
 

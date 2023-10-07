@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import HashLoader from "react-spinners/HashLoader";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import imgUrl from '../../assets/Img/Untitled.png';
 
 // const baseUrl = "http://localhost:2023"
 const baseUrl = "https://frienemie-phoenbook.onrender.com"
@@ -11,9 +11,8 @@ const baseUrl = "https://frienemie-phoenbook.onrender.com"
 const Update = () => {
 
     const [image, setImage] = useState(null);
-    const [uploading, setUpliading] = useState(false);
     const [preview, setPreview] = useState(null);
-    const [loading, setLoading] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     function Upload(e) {
         const file = e.target.files[0];
@@ -30,7 +29,7 @@ const Update = () => {
         data.append("file", image);
         data.append("upload_preset", "sjxeivct");
         try {
-            setUpliading(true);
+            setLoading(true);
             let res = await fetch(
                 "https://api.cloudinary.com/v1_1/daoltrjyw/image/upload",
                 {
@@ -39,10 +38,10 @@ const Update = () => {
                 }
             );
             const urlData = await res.json();
-            setUpliading(false);
+            setLoading(false);
             return urlData.url;
         } catch (error) {
-            setUpliading(false);
+            setLoading(false);
             console.log(error);
         }
     }
@@ -57,8 +56,7 @@ const Update = () => {
     const { id } = useParams();
     const getData = async () => {
 
-        setLoading(true);
-        const responce = await fetch(`/route/get/${id}`)
+        const responce = await fetch(`${baseUrl}/route/get/${id}`)
         const result = await responce.json();
 
         if (responce.ok) {
@@ -112,14 +110,12 @@ const Update = () => {
         }
     };
 
-
-
     return (
         <div>
             <ToastContainer />
             <h1 className='text-center text-3xl py-2 text-white underline font-bold bg-purple-500'>Update Your Contact</h1>
             {
-                loading || uploading ? (
+                loading ? (
                     <div className="flex items-center justify-center py-24">
                         <HashLoader
                             color={"#36d7b7"}
@@ -136,7 +132,7 @@ const Update = () => {
                             <div>
                                 <figure className="w-52 h-52 lg:w-80 lg:h-80 rounded overflow-hidden" >
                                     <img
-                                        src={preview || image}
+                                        src={preview || image || imgUrl }
                                         alt="Insert Image"
                                     />
                                 </figure>
@@ -193,7 +189,7 @@ const Update = () => {
                                         type="submit"
                                         className="w-full mt-8 bg-indigo-500 text-white py-2 rounded-md hover:bg-indigo-600 transition duration-300"
                                     >
-                                        {uploading ? "Update ...." : "Update"}
+                                        {loading ? "Update ...." : "Update"}
                                     </button>
                                 </form>
                             </div>

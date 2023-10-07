@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
 import HashLoader from "react-spinners/HashLoader";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import imgUrl from '../../assets/Img/Untitled.png';
 
 // const baseUrl = "http://localhost:2023"
 const baseUrl = "https://frienemie-phoenbook.onrender.com"
@@ -75,7 +75,7 @@ const Dashboard = () => {
         )
           :
           <>
-            <div className="grid grid-flow-row-dense grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div className="grid grid-flow-row-dense grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:mx-8 gap-4 mx-5 lg:mx-4">
               {Data.map((user, index) => (
                 <div key={index} className=" flex items-center justify-center">
                   <div className="w-full max-w-sm  border border-gray-200 rounded-lg shadow">
@@ -131,9 +131,9 @@ const Dashboard = () => {
                       </div>
                     </div>
                     <div className="flex flex-col items-center pb-10">
-                      <figure className="w-40 h-40 lg:w-52 lg:h-52 mb-3 rounded shadow-lg overflow-hidden">
+                      <figure className="w-48 h-48 mb-3 rounded shadow-lg overflow-hidden">
                         <img
-                          src={user.image}
+                          src={user.image || imgUrl}
                           alt="Bonnie image"
                         />
                       </figure>

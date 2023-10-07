@@ -8,7 +8,6 @@ const UserSchema = mongoose.Schema({
   },
   Email: {
     type: String,
-    unique: true,
     required: true,
   },
   image: {
@@ -16,7 +15,6 @@ const UserSchema = mongoose.Schema({
   },
   Phoen_No: {
     type: Number,
-    // unique: true,
   },
 
 }, { timestamps: true })
