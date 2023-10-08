@@ -99,6 +99,7 @@ const Navbar = () => {
 
   return (
     <>
+    <div className="mx-auto ms-4 me-5 md:ms-0 md:me-0">
       <div className="navbar flex items-center justify-between">
         <div className="navbar-start flex items-center">
           <img className="w-12 rounded m-1 lg:m-4 ms-0" src={image} alt="" />
@@ -132,7 +133,8 @@ const Navbar = () => {
           <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52" >{menu}</ul>
         </div>
       </div>
-      <hr />
+    </div>
+    <hr />
     </>
   );
 };
