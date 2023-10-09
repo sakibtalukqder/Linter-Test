@@ -82,7 +82,7 @@ const Navbar = () => {
               <li className="w-full flex items-center">
                 <NavLink className="btn-outline btn-sm mt4 text-center rounded w-full btn" to="/user">User Profile</NavLink>
               </li>
-              <button className="btn btn-outline btn-error btn-sm mt4 rounded w-full" onClick={Sinout}>Sign Out</button>
+              <button className="btn btn-outline btn-error btn-sm mt4 rounded w-full mt-1" onClick={Sinout}>Sign Out</button>
             </ul>
           </div>
 
@@ -93,13 +93,13 @@ const Navbar = () => {
               {
                 Data.map((user, ind) => (
                   <Link to="/user">
-                  <figure key={ind} className="w-9 h-9 overflow-hidden rounded-full">
-                    <img
-                      src={user.photoURL || ImgSrc}
-                      alt="User"
+                    <figure key={ind} className="w-9 h-9 overflow-hidden rounded-full">
+                      <img
+                        src={user.photoURL || ImgSrc}
+                        alt="User"
                       />
-                  </figure>
-                      </Link>
+                    </figure>
+                  </Link>
                 ))
               }
             </div>
@@ -116,7 +116,7 @@ const Navbar = () => {
         </>
       )}
 
-      <div className="my-3 pt-3 mx-auto lg:ps-5">
+      <div className="pt-3 mx-auto lg:ps-5">
         <DarkToggle />
       </div>
 
@@ -157,7 +157,7 @@ const Navbar = () => {
                 />
               </svg>
             </label>
-            <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52" >{menu}</ul>
+            <ul tabIndex={0} className="dropdown-content z-[1] menu p-4 py-8 shadow bg-base-100 rounded-box w-52" >{menu}</ul>
           </div>
         </div>
       </div>

@@ -81,7 +81,7 @@ const ViewContact = () => {
             <div className='lg:py-20 pb-4' key={idx}>
               <div className="hero border w-full rounded shadow-2xl">
                 <div className="hero-content flex-col lg:flex-row-reverse shadow-xl">
-                  <figure className="w-60 h-60 overflow-hidden rounded flex justify-center items-center">
+                  <figure className="w-60 h-60 overflow-hidden rounded flex justify-center items-center shadow-2xl">
                     <img src={User.image || imgUrl} className="shadow-xl" />
                   </figure>
                   <div className="lg:mx-4 mx-0 flex flex-col justify-start items-start ">
