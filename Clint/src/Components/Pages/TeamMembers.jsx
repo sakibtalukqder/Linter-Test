@@ -112,7 +112,7 @@ const TeamMembers = () => {
                                 ))
                             }
                             <Link to={"/"} className='hidden md:block'>
-                                <p className="text-center w- py-4 w-full text-white text-3xl font-bold bg-orange-500">
+                                <p className="text-center w- py-4 w-full text-white text-3xl font-bold border bg-orange-500  duration-1000 btn-outline">
                                     Stay With Frienemie, ❤
                                 </p>
                             </Link>
@@ -120,9 +120,9 @@ const TeamMembers = () => {
                     </div>
                 </div>
                 <Link to={"/"} className='mt-5 md:hidden md:mt-0'>
-                    <p className="text-center w- py-4 w-full text-white text-3xl font-bold bg-orange-500">
+                    <button className="text-center w- py-4 w-full text-white text-3xl font-bold bg-orange-500 outline">
                         Stay With Frienemie, ❤
-                    </p>
+                    </button>
                 </Link>
                 <hr className="w-1/2 h-1 hidden md:flex bg-orange-500 mx-auto  rounded-full" />
             </section>

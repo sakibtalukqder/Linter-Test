@@ -78,17 +78,17 @@ const ViewContact = () => {
         <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="dark" />
         {
           Data.map((User,idx) => (
-            <div key={idx}>
-              <div className="hero bg-gradient-to-r from-slate-300 via-slate-200 to-slate-100 w-full rounded shadow-2xl">
+            <div className='lg:py-20 pb-4' key={idx}>
+              <div className="hero border w-full rounded shadow-2xl">
                 <div className="hero-content flex-col lg:flex-row-reverse shadow-xl">
                   <figure className="w-60 h-60 overflow-hidden rounded flex justify-center items-center">
                     <img src={User.image || imgUrl} className="shadow-xl" />
                   </figure>
-                  <div className="lg:mx-4 mx-0 flex flex-col justify-start items-start text-slate-950">
+                  <div className="lg:mx-4 mx-0 flex flex-col justify-start items-start ">
                     <h1 className="text-2xl lg:text-5xl font-bold">{User.Name}</h1>
-                    <p className='text-lg py-2 '><span className=' text-neutral-500'>Email:</span> {User.Email}
+                    <p className='text-lg py-2 font-bold'><span className=" font-light">Email :</span> {User.Email}
                       <br />
-                      <span className=' text-neutral-500'>Contact:</span> 0{User.Phoen_No}</p>
+                      <span className=" font-light">Contact :</span> 0{User.Phoen_No}</p>
                     <br />
                     <div className='flex'>
                       <button onClick={() => Delete(User._id)} className=" btn btn-sm btn-outline btn-error rounded-sm my-4 mb-12 lg:mb-0">Delete</button>

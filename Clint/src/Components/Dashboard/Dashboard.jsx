@@ -99,11 +99,11 @@ const Dashboard = () => {
                         </label>
                         <ul
                           tabIndex={0}
-                          className="dropdown-content z-[1] menu shadow bg-base-100 rounded w-52"
+                          className="dropdown-content z-[1] menu shadow-2xl bg-base-100 rounded p-4 w-52"
                         >
                           <li>
                             <Link
-                              className="btn flex items-center btn-outline btn-success"
+                              className="btn-success btn-outline flex flex-col justify-center items-center border w-full my-1 mx-auto  font-bold "
                               to={`/dash/view/${user._id}`}
                             >
                               <button className="">
@@ -114,7 +114,7 @@ const Dashboard = () => {
 
                           <li>
                             <Link
-                              className="btn flex items-center btn-outline btn-primary"
+                              className="btn-primary btn-outline flex flex-col justify-center items-center border w-full my-1 mx-auto  font-bold "
                               to={`/dash/${user._id}`}
                             >
                               <button className="">
@@ -125,7 +125,7 @@ const Dashboard = () => {
 
                           <li>
                             <button
-                              className="btn flex items-center btn-outline btn-error  font-medium text-center "
+                              className="btn-error btn-outline flex flex-col justify-center items-center border w-full my-1 mx-auto  font-bold "
                               onClick={() => Delete(user._id)}
                             >
                               Delete Contact

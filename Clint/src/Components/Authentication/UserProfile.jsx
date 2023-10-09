@@ -101,7 +101,7 @@ const UserProfile = () => {
       <div>
         {
           Data.map((User, index) => (
-            <div key={index}>
+            <div className="lg:py-20 pb-4" key={index}>
               <div className="hero (bg-slate-300) bg-gradient-to-r from-slate-300 via-slate-200 to-slate-100 w-full rounded shadow-2xl">
                 <div className="hero-content flex-col lg:flex-row-reverse shadow-xl">
                   <figure className="w-72 h-72 overflow-hidden rounded flex justify-center items-center">

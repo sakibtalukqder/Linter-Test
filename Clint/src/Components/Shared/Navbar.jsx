@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import image from "../../assets/Img/Logo.jpg";
 import { signOut } from "firebase/auth";
 import { auth } from "../Authentication/firebaseConfig";
@@ -65,7 +65,7 @@ const Navbar = () => {
 
           {/* User Menu small Screen  */}
           <div className="lg:hidden block">
-            <div tabIndex={0} className="ps-4 p-1">
+            <div tabIndex={0} className="ps-4 p-1 pb-2">
               {
                 Data.map((user, ind) => (
                   <figure key={ind} className="w-12 h-12 overflow-hidden rounded-full">
@@ -89,27 +89,28 @@ const Navbar = () => {
 
           {/* User Menu Large Screen  */}
           <div className="dropdown dropdown-end dropdown-hover py-4 lg:py-0 hidden lg:block">
-            <div tabIndex={0} className="ps-4 pt-1">
+            <div tabIndex={0} className="ps-3 pt-1">
               {
                 Data.map((user, ind) => (
+                  <Link to="/user">
                   <figure key={ind} className="w-9 h-9 overflow-hidden rounded-full">
                     <img
                       src={user.photoURL || ImgSrc}
                       alt="User"
-                    />
+                      />
                   </figure>
-
+                      </Link>
                 ))
               }
             </div>
             <ul
               tabIndex={0}
-              className="dropdown-content z-[1] menu py-4 shadow bg-base-100 rounded-none w-36 text-center flex items-center"
+              className="dropdown-content z-[1] menu py-4 shadow bg-base-100 rounded-none w-52 px-6 text-center flex items-center border"
             >
               <li className="w-full flex items-center">
-                <NavLink className="btn-outline btn-sm mt4 text-center rounded w-full btn" to="/user">User Profile</NavLink>
+                <NavLink className="btn-outline btn-sm mt-2 mx-auto text-center rounded w-full btn" to="/user">User Profile</NavLink>
               </li>
-              <button className="btn btn-outline btn-error btn-sm mt4 rounded w-full" onClick={Sinout}>Sign Out</button>
+              <button className="btn btn-outline btn-error btn-sm mt-2 mx-auto rounded w-full" onClick={Sinout}>Sign Out</button>
             </ul>
           </div>
         </>
