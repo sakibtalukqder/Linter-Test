@@ -7,7 +7,7 @@ const User = require('../Model/user')
 const Create = async (req, res) => {
     const { Name, Email, image, Phoen_No, uid } = req.body;
     try {
-        console.log(req.body);
+        // console.log(req.body);
         const NewUser = await User.create({ Name, Email, image, Phoen_No, uid });
         res.status(201).json(NewUser);
     } catch (error) {
@@ -26,6 +26,7 @@ const Read = async (req, res) => {
         res.status(500).json({ error: error.message })
     }
 }
+
 
 // Read Single User
 const SingleRead = async (req, res) => {
@@ -51,8 +52,6 @@ const FindDatabase = async (req, res) => {
         res.status(500).json({ error: error.message })
     }
 }
-
-
 
 
 

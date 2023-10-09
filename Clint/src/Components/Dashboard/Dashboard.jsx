@@ -99,33 +99,33 @@ const Dashboard = () => {
                         </label>
                         <ul
                           tabIndex={0}
-                          className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+                          className="dropdown-content z-[1] menu shadow bg-base-100 rounded w-52"
                         >
                           <li>
                             <Link
-                              className="btn-outline btn-primary"
-                              to={`/dash/${user._id}`}
-                            >
-                              <button className="inline-flex items-center text-center">
-                                Update Contact
-                              </button>
-                            </Link>
-                          </li>
-
-                          <li>
-                            <Link
-                              className="btn-outline btn-success"
+                              className="btn flex items-center btn-outline btn-success"
                               to={`/dash/view/${user._id}`}
                             >
-                              <button className="  inline-flex items-center text-center">
+                              <button className="">
                                 View Contact
                               </button>
                             </Link>
                           </li>
 
                           <li>
+                            <Link
+                              className="btn flex items-center btn-outline btn-primary"
+                              to={`/dash/${user._id}`}
+                            >
+                              <button className="">
+                                Update Contact
+                              </button>
+                            </Link>
+                          </li>
+
+                          <li>
                             <button
-                              className=" btn-outline btn-error inline-flex items-center font-medium text-center "
+                              className="btn flex items-center btn-outline btn-error  font-medium text-center "
                               onClick={() => Delete(user._id)}
                             >
                               Delete Contact
