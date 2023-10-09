@@ -68,7 +68,7 @@ const Navbar = () => {
             <div tabIndex={0} className="ps-4 p-1 pb-2">
               {
                 Data.map((user, ind) => (
-                  <figure key={ind} className="w-12 h-12 overflow-hidden rounded-full">
+                  <figure key={ind} className="w-12 h-12 overflow-hidden rounded-full flex justify-center items-center">
                     <img
                       src={user.photoURL || ImgSrc}
                       alt="User"
@@ -93,7 +93,7 @@ const Navbar = () => {
               {
                 Data.map((user, ind) => (
                   <Link to="/user">
-                    <figure key={ind} className="w-9 h-9 overflow-hidden rounded-full">
+                    <figure key={ind} className="w-9 h-9 overflow-hidden rounded-full flex justify-center items-center">
                       <img
                         src={user.photoURL || ImgSrc}
                         alt="User"

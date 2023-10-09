@@ -135,10 +135,10 @@ const Dashboard = () => {
                       </div>
                     </div>
                     <div className="flex flex-col items-center pb-10">
-                      <figure className="w-48 h-48 mb-3 rounded shadow-lg overflow-hidden">
+                      <figure className="w-48 h-48 mb-3 rounded shadow-lg overflow-hidden flex justify-center items-center">
                         <img
                           src={user.image || imgUrl}
-                          alt="Bonnie image"
+                          alt="Previous Image is Corrupted Please Upload an image"
                         />
                       </figure>
                       <h5 className="mb-1 font-bold text-2xl">{user.Name}</h5>

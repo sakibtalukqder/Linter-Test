@@ -130,7 +130,7 @@ const Update = () => {
                     <div className="hero min-h-full md:py-20 lg:py-20 bg-base-200">
                         <div className="hero-content flex-col lg:flex-row-reverse">
                             <div>
-                                <figure className="w-52 h-52 lg:w-80 lg:h-80 rounded overflow-hidden" >
+                                <figure className="w-52 h-52 lg:w-80 lg:h-80 rounded overflow-hidden flex justify-center items-center" >
                                     <img
                                         src={preview || image || imgUrl }
                                         alt="Insert Image"
