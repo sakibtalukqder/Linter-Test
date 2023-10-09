@@ -5,7 +5,7 @@ import HashLoader from "react-spinners/HashLoader";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-// const baseUrl = "http://localhost:2023"
+// const baseUrl = "http://localhost:2024"
 const baseUrl = "https://frienemie-phoenbook.onrender.com"
 
 const Register = () => {
@@ -15,7 +15,6 @@ const Register = () => {
         "https://media.istockphoto.com/id/587805038/vector/profile-picture-vector-illustration.jpg?s=612x612&w=0&k=20&c=soUW134LXdq5F9LcRtniX--ZOPNQqTdhQJrewQiZsf4=";
 
     const [image, setImage] = useState(null);
-    const [uploading, setUpliading] = useState(false);
     const [preview, setPreview] = useState(null);
     const [loading, setLoading] = useState();
 
@@ -32,12 +31,11 @@ const Register = () => {
     }
 
     async function UploadImage() {
+        setLoading(true);
         const data = new FormData();
         data.append("file", image);
         data.append("upload_preset", "sjxeivct");
         try {
-            setLoading(true);
-            setUpliading(true);
             let res = await fetch(
                 "https://api.cloudinary.com/v1_1/daoltrjyw/image/upload",
                 {
@@ -46,19 +44,22 @@ const Register = () => {
                 }
             );
             const urlData = await res.json();
-            setUpliading(false);
+            setLoading(false);
             return urlData.url;
         } catch (error) {
-            setUpliading(false);
+            setLoading(false);
             console.log(error);
         }
     }
-
 
     const [Name, setName] = useState("");
     const [Email, setEmail] = useState("");
     const [Phoen_No, setPhoen_No] = useState(0);
     const [Error, setError] = useState("");
+
+    const user = JSON.parse(localStorage.getItem("User"));
+    const UserId = user.uid;
+    console.log("User id : ", UserId);
 
     const Submit = async (e) => {
 
@@ -68,7 +69,7 @@ const Register = () => {
         console.log(url);
 
         setLoading(true);
-        const NewUser = { Name, Email, image: url, Phoen_No }
+        const NewUser = { Name, Email, image: url, Phoen_No, uid: UserId }
         console.log(NewUser);
 
         const responce = await fetch(`${baseUrl}/route/cr`, {
@@ -93,12 +94,13 @@ const Register = () => {
             setEmail("");
             setPhoen_No(0);
             setError("");
-            nevigate('/dash');
             setLoading(false);
+            nevigate('/dash');
         }
 
     }
 
+    console.log(Error);
 
     return (
         <div>
@@ -186,16 +188,13 @@ const Register = () => {
                                         type="submit"
                                         className="w-full mt-8 bg-indigo-500 text-white py-2 rounded-md hover:bg-indigo-600 transition duration-300"
                                     >
-                                        {uploading ? "Submitting ...." : "Submit"}
+                                        {loading ? "Submitting ...." : "Submit"}
                                     </button>
                                 </form>
                             </div>
                         </div>
                     </div>
-
             }
-
-
         </div>
     );
 };

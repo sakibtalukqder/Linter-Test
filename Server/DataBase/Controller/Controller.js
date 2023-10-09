@@ -5,10 +5,10 @@ const User = require('../Model/user')
 
 // Create New User 
 const Create = async (req, res) => {
-    const { Name, Email, image, Phoen_No } = req.body;
+    const { Name, Email, image, Phoen_No, uid } = req.body;
     try {
         console.log(req.body);
-        const NewUser = await User.create({ Name, Email, image, Phoen_No });
+        const NewUser = await User.create({ Name, Email, image, Phoen_No, uid });
         res.status(201).json(NewUser);
     } catch (error) {
         console.log(error);
@@ -38,6 +38,24 @@ const SingleRead = async (req, res) => {
     }
 }
 
+
+
+// Read Single User
+// Read By apiKey
+const FindDatabase = async (req, res) => {
+    const uid = req.params.uid;
+    try {
+        const SingleUser = await User.find({ uid });
+        res.status(200).json(SingleUser);
+    } catch (error) {
+        res.status(500).json({ error: error.message })
+    }
+}
+
+
+
+
+
 // Update User
 const Update = async (req, res) => {
     const { id } = req.params;
@@ -64,4 +82,4 @@ const Delete = async (req, res) => {
     }
 }
 
-module.exports = { Create, Read, SingleRead, Delete, Update };
+module.exports = { Create, Read, SingleRead, Delete, Update, FindDatabase };

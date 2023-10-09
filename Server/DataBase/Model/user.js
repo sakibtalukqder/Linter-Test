@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+
 // User Schema...
 const UserSchema = mongoose.Schema({
   Name: {
@@ -15,6 +16,10 @@ const UserSchema = mongoose.Schema({
   },
   Phoen_No: {
     type: Number,
+  },
+  uid: {
+    type: String,
+    required: true,
   },
 
 }, { timestamps: true })

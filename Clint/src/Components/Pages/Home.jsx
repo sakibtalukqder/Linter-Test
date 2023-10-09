@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Img from '../../assets/Img/Home.png'
 
-const Img="https://compuexpresstijuana.com.mx/wp-content/uploads/2023/07/R-3.png"
+// const Img="https://compuexpresstijuana.com.mx/wp-content/uploads/2023/07/R-3.png"
 // const Img="https://pbs.twimg.com/media/ELxci4zXsAIYs9B.jpg"
 
 

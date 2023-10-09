@@ -5,18 +5,22 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import imgUrl from '../../assets/Img/Untitled.png';
 
-// const baseUrl = "http://localhost:2023"
+// const baseUrl = "http://localhost:2024"
 const baseUrl = "https://frienemie-phoenbook.onrender.com"
 
 const Dashboard = () => {
+
   const [Data, setData] = useState([]);
   const [error, setError] = useState();
-
   const [loading, setLoading] = useState();
+
+  const user = JSON.parse(localStorage.getItem("User"));
+  const UserId = user.uid;
+  console.log("User id : ", UserId);
 
   async function getData() {
     setLoading(true);
-    const response = await fetch(`${baseUrl}/route/rd`);
+    const response = await fetch(`${baseUrl}/route/read/${UserId}`);
     const result = await response.json();
     console.log("result..", result);
     if (!response.ok) {

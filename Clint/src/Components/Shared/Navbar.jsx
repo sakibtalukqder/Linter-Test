@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import image from "../../assets/Img/Logo.jpg";
 import { signOut } from "firebase/auth";
 import { auth } from "../Authentication/firebaseConfig";
@@ -36,19 +36,19 @@ const Navbar = () => {
   const menu = (
     <>
       <li>
-        <Link to="/">Home</Link>
+        <NavLink to="/">Home</NavLink>
       </li>
       <li>
-        <Link to="/about">About</Link>
+        <NavLink to="/about">About</NavLink>
       </li>
 
       {!user && (
         <>
           <li>
-            <Link to="/login">Login</Link>
+            <NavLink to="/login">Login</NavLink>
           </li>
           <li>
-            <Link to="/sinup">Sign Up</Link>
+            <NavLink to="/sinup">Sign Up</NavLink>
           </li>
         </>
       )}
@@ -56,10 +56,10 @@ const Navbar = () => {
       {user && (
         <>
           <li>
-            <Link to="/dash">All Contact</Link>
+            <NavLink to="/dash">All Contact</NavLink>
           </li>
           <li>
-            <Link to="/reg">Add Contact</Link>
+            <NavLink to="/reg">Add Contact</NavLink>
           </li>
 
           <div className="dropdown dropdown-end dropdown-hover py-4 lg:py-0 ">
@@ -81,7 +81,7 @@ const Navbar = () => {
               className="dropdown-content z-[1] menu py-4 shadow bg-base-100 rounded-box w-32 text-center flex items-center"
             >
               <li className="w-full">
-                <Link to="/user">User Profile</Link>
+                <NavLink to="/user">User Profile</NavLink>
               </li>
               <button className=" btn-outline btn-error btn-sm mt4 rounded w-full" onClick={Sinout}>Sign Out</button>
             </ul>
@@ -103,12 +103,12 @@ const Navbar = () => {
       <div className="navbar flex items-center justify-between">
         <div className="navbar-start flex items-center">
           <img className="w-12 rounded m-1 lg:m-4 ms-0" src={image} alt="" />
-          <Link
+          <NavLink
             to="/"
             className="normal-case cursor-pointer font-bold text-xl lg:text-3xl"
           >
             Frienemie
-          </Link>
+          </NavLink>
         </div>
         <div className="navbar-end hidden lg:flex items-center">
           <ul className="menu menu-horizontal items-center pt-2 px-1">{menu}</ul>

@@ -6,10 +6,13 @@ import imgurl from '../../assets/Img/Untitled.png';
 
 
 const UserProfile = () => {
+  
   const user = JSON.parse(localStorage.getItem("User"));
   const Data = [user];
-  const nevigate = useNavigate();
+  console.log("LocalStorage User : ",Data);
 
+  const nevigate = useNavigate();
+  
   // Sinout Function
   const Sinout = () => {
     signOut(auth)
@@ -63,6 +66,8 @@ const UserProfile = () => {
 
   const [userUpdate, setUserupdate] = useState();
   const [name,setName] = useState();
+
+  // console.log("Current User : ",userUpdate);
 
   useEffect(() => {
     const User = onAuthStateChanged(auth, (user) => setUserupdate(user));

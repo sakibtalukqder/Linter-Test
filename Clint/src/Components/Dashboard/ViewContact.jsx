@@ -3,9 +3,10 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import HashLoader from "react-spinners/HashLoader";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import imgUrl from '../../assets/Img/Untitled.png';
 
 
-// const baseUrl = "http://localhost:2023"
+// const baseUrl = "http://localhost:2024"
 const baseUrl = "https://frienemie-phoenbook.onrender.com"
 
 
@@ -76,12 +77,12 @@ const ViewContact = () => {
         }
         <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover theme="dark" />
         {
-          Data.map((User) => (
-            <div>
+          Data.map((User,idx) => (
+            <div key={idx}>
               <div className="hero bg-gradient-to-r from-slate-300 via-slate-200 to-slate-100 w-full rounded shadow-2xl">
                 <div className="hero-content flex-col lg:flex-row-reverse shadow-xl">
                   <figure className="w-60 h-60 overflow-hidden rounded flex justify-center items-center">
-                    <img src={User.image || imgurl} className="shadow-xl" />
+                    <img src={User.image || imgUrl} className="shadow-xl" />
                   </figure>
                   <div className="lg:mx-4 mx-0 flex flex-col justify-start items-start text-slate-950">
                     <h1 className="text-2xl lg:text-5xl font-bold">{User.Name}</h1>
@@ -105,7 +106,3 @@ const ViewContact = () => {
 };
 
 export default ViewContact;
-
-
-{/* <h2 className="card-title"></h2>
-             */}
