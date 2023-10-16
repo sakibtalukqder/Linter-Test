@@ -10,7 +10,7 @@ const Home = () => {
             <div className="hero-content py-4 flex-col lg:flex-row-reverse">
              <figure>
               <img
-              className="lg:max-w-lg max-w-full rounded-lg shadow-4xl"
+              className="lg:max-w-lg max-w-full p-6 lg:p-0 rounded-lg shadow-4xl"
                 src={Img}
               />
              </figure>
