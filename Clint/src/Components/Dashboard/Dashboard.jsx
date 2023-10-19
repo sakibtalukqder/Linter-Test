@@ -85,6 +85,7 @@ const Dashboard = () => {
               {
                 Data.map((user, ind) => (
                   <>
+
                     <div key={ind} className="card w-72 bg-base-100 shadow-xl image-full">
                       <figure className=" overflow-hidden h-72">
                         <img
@@ -163,8 +164,9 @@ const Dashboard = () => {
             </div>
           </>
       }
-      <div className="flex items-center justify-center py-8">
-        <Link to="/reg" className=" btn btn-outline btn-accent">Add New Contract</Link>
+      <div className="flex flex-col items-center justify-center py-8">
+        <h2>Create Your Contract & enjoy Frienemie</h2>
+        <Link to="/reg" className=" btn btn-outline btn-accent mt-3">Add New Contract</Link>
       </div>
     </>
 
