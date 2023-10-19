@@ -11,7 +11,7 @@ const Home = () => {
               <div className='mx-10'>
               <figure>
               <img
-              className="lg:w-lg w-full rounded-lg shadow-4xl hidden md:flex"
+              className="lg:max-w-lg max-w-full p-6 lg:p-0 rounded-lg shadow-4xl hidden md:flex"
                 src={Img}
               />
              </figure>
@@ -19,7 +19,7 @@ const Home = () => {
              
               <div className="w-full">
                 <h1 className="text-5xl font-bold">Welcome to Frienemie <>!</></h1>
-                <p className="py-6">
+                <p className="py-6 px-4 md:px-0">
                   Frienemie is a web application. <br /> This web will provide you a cloud to Securely store your contract information. <br />Frinemie is 100% ad free, and secure.
                 </p>
                 <Link to="/dash" className="btn btn-accent">Your Contract</Link>
