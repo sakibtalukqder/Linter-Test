@@ -105,7 +105,7 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="dropdown-content z-[1] menu py-4 shadow bg-base-100 rounded-none w-52 px-6 text-center flex items-center border"
+              className="dropdown-content z-[11] menu py-4 shadow bg-base-100 rounded-none w-52 px-6 text-center flex items-center border"
             >
               <li className="w-full flex items-center">
                 <NavLink className="btn-outline btn-sm mt-2 mx-auto text-center rounded w-full btn" to="/user">User Profile</NavLink>
@@ -126,7 +126,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="mx-auto ms-4 me-5 md:ms-0 md:me-0">
+      <div className="mx-auto ms-4 me-5 md:ms-0 md:me-0 z-[1]">
         <div className="navbar flex items-center justify-between">
           <div className="navbar-start flex items-center">
             <img className="w-12 rounded m-1 lg:m-4 ms-0" src={image} alt="" />
@@ -138,7 +138,7 @@ const Navbar = () => {
             </NavLink>
           </div>
           <div className="navbar-end hidden lg:flex items-center">
-            <ul className="menu menu-horizontal items-center pt-2 px-1">{menu}</ul>
+            <ul className="menu menu-horizontal items-center pt-2 px-1 z-[11]">{menu}</ul>
           </div>
           <div className="dropdown dropdown-hover dropdown-end">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -157,7 +157,7 @@ const Navbar = () => {
                 />
               </svg>
             </label>
-            <ul tabIndex={0} className="dropdown-content z-[1] menu p-4 py-8 shadow bg-base-100 rounded-box w-52" >{menu}</ul>
+            <ul tabIndex={0} className="dropdown-content z-[21] menu p-4 py-4 shadow bg-base-100 rounded-box w-52" >{menu}</ul>
           </div>
         </div>
       </div>

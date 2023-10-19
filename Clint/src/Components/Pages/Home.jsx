@@ -8,12 +8,15 @@ const Home = () => {
         <div>
           <div className="hero min-h-full lg:py-20 w-auto bg-base-200 lg:my-2 lg:mt-8 py-8">
             <div className="hero-content py-4 flex-col lg:flex-row-reverse">
-             <figure>
+              <div className='mx-10'>
+              <figure>
               <img
-              className="lg:max-w-lg max-w-full rounded-lg shadow-4xl"
+              className="lg:w-lg w-full rounded-lg shadow-4xl hidden md:flex"
                 src={Img}
               />
              </figure>
+              </div>
+             
               <div className="w-full">
                 <h1 className="text-5xl font-bold">Welcome to Frienemie <>!</></h1>
                 <p className="py-6">
