@@ -15,6 +15,7 @@ This website can be use to manage contract information. And save the contract in
 ![App Screenshot](https://github.com/sakibtalukqder/Frienemie/blob/main/Clint/src/assets/Img/Screenshot.png?raw=true)
 
 </div>
+
 ## Run Locally
 
 Clone the project
@@ -49,10 +50,8 @@ Start the server
 
 #### Node Js is required to run the project
 
+## Authors  [@sakibtalukqder](https://github.com/sakibtalukqder)
+
 ![Logo](https://github.com/sakibtalukqder/Frienemie/blob/main/Clint/src/assets/Img/Logo.jpg?raw=true)
 
-
-## Authors
-
-- [@sakibtalukqder](https://github.com/sakibtalukqder)
 
