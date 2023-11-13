@@ -49,7 +49,7 @@ Start the server
 
 #### Node Js is required to run the project
 
-![Logo](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/th5xamgrr6se0x5ro4g6.png)
+![Logo](https://github.com/sakibtalukqder/Frienemie/blob/main/Clint/src/assets/Img/Logo.jpg?raw=true)
 
 
 ## Authors
