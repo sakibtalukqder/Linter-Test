@@ -12,7 +12,7 @@ This website can be use to manage contract information. And save the contract in
 ## Screenshots
 <div align="center" >
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](https://github.com/sakibtalukqder/Frienemie/blob/main/Clint/src/assets/Img/Screenshot.png?raw=true)
 
 </div>
 ## Run Locally
