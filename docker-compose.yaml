@@ -1,6 +1,6 @@
 services:
   Flask-App:
-    image: python:slim
+    image: flask-app
     build:
       context: .
       dockerfile: Dockerfile
@@ -10,4 +10,13 @@ services:
      - type: bind
        source: .
        target: /app
-       
+  Linter-Test:
+    image: linter-test
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: Linter-Test
+    volumes:
+     - type: bind
+       source: .
+       target: /app
