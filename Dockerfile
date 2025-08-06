@@ -1,8 +1,8 @@
-FROM python:3.12-slim
+FROM python:slim
 
 WORKDIR /app
+COPY req.txt /app/
 
-COPY app.py /app/app.py
-RUN pip install --no-cache-dir pylint
-# Run the script when the container starts
-CMD ["python", "app.py"]
+RUN pip install -r req.txt
+
+CMD [ "python", "app.py" ]

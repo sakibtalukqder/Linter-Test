@@ -1,0 +1,13 @@
+services:
+  Flask-App:
+    image: python:slim
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5056:5056"
+    volumes:
+     - type: bind
+       source: .
+       target: /app
+       
