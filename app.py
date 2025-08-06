@@ -1,7 +1,6 @@
 """
 A simple Flask app that returns 'Hello World' at http://localhost:3300
 """
-
 from flask import Flask
 
 app = Flask(__name__)
