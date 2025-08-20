@@ -19,4 +19,4 @@ jobs:
           docker compose build Unit-Test
       - name: Run Pylint
         run: |
-          docker compose up Unit-Test
+          docker compose run --rm Unit-Test
