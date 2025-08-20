@@ -10,7 +10,7 @@ def hello():
 
 @app.route('/fail')
 def fail():
-    return some_undefined_variable  # intentionally fails
+    return some_undefined_variable  # intentionally undefined
 
 # ---------------------------
 # Unit tests in the same file
@@ -26,8 +26,9 @@ class FlaskAppTestCase(unittest.TestCase):
         self.assertEqual(response.data.decode('utf-8'), "Hello World")
 
     def test_fail_route(self):
+        # This test will FAIL because /fail raises an error
         response = self.app.get('/fail')
-        self.assertEqual(response.status_code, 500)
+        self.assertEqual(response.status_code, 200)  # expected wrong status
 
 # ---------------------------
 # Run app or tests
@@ -35,8 +36,6 @@ class FlaskAppTestCase(unittest.TestCase):
 if __name__ == "__main__":
     import sys
     if "test" in sys.argv:
-        # Run unit tests: python flask_app.py test
         unittest.main(argv=[sys.argv[0]])
     else:
-        # Run Flask app normally
         app.run(host="localhost", port=3300)
