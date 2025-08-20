@@ -19,4 +19,4 @@ jobs:
           docker compose build Unit-Test
       - name: Run PyTest
         run: |
-          docker compose run --rm Unit-Test
+          docker compose up --abort-on-container-exit Unit-Test

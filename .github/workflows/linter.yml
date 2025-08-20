@@ -19,4 +19,4 @@ jobs:
           docker compose build Linter-Test
       - name: Run Pylint
         run: |
-          docker compose run --rm Linter-Test
+          docker compose up --abort-on-container-exit Linter-Test
