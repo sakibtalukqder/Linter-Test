@@ -10,12 +10,24 @@ services:
      - type: bind
        source: .
        target: /app
+
   Linter-Test:
     image: linter-test
     build:
       context: .
       dockerfile: Dockerfile
       target: Linter-Test
+    volumes:
+     - type: bind
+       source: .
+       target: /app
+
+  Unit-Test:
+    image: unit-test
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: unit-test
     volumes:
      - type: bind
        source: .

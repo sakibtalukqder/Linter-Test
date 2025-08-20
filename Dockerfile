@@ -10,4 +10,9 @@ CMD [ "python", "app.py" ]
 FROM base as linter-test
 
 RUN pip install pylint
-CMD [ "pylint","app.py" ]
+CMD ["sh", "-c", "pylint $(find . -type f -name '*.py')"]
+
+FROM base as unit-test
+
+RUN pip install pytest
+CMD [ "pytest","app.py" ]
