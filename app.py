@@ -1,42 +1,49 @@
-# flask_app.py
-from flask import Flask
+"""
+Flask application with unit tests.
+"""
+
 import unittest
+from flask import Flask, jsonify
 
 app = Flask(__name__)
 
 @app.route('/')
 def hello():
+    """Return a simple Hello World message."""
     return "Hello World"
 
 @app.route('/fail')
 def fail():
-    return some_undefined_variable  # intentionally fails
+    """Intentionally fail to demonstrate error handling."""
+    try:
+        # some_undefined_variable is intentionally undefined
+        return some_undefined_variable
+    except NameError as e:
+        # specifically catch NameError instead of broad Exception
+        return jsonify({"error": str(e)}), 500
 
-# ---------------------------
-# Unit tests in the same file
-# ---------------------------
 class FlaskAppTestCase(unittest.TestCase):
+    """Unit tests for Flask application."""
+
     def setUp(self):
+        """Set up test client for Flask app."""
         self.app = app.test_client()
         self.app.testing = True
 
     def test_hello(self):
+        """Test the / route returns 200 and 'Hello World'."""
         response = self.app.get('/')
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.data.decode('utf-8'), "Hello World")
 
     def test_fail_route(self):
+        """Test the /fail route returns 500 due to NameError."""
         response = self.app.get('/fail')
         self.assertEqual(response.status_code, 500)
 
-# ---------------------------
-# Run app or tests
-# ---------------------------
 if __name__ == "__main__":
     import sys
     if "test" in sys.argv:
-        # Run unit tests: python flask_app.py test
         unittest.main(argv=[sys.argv[0]])
     else:
-        # Run Flask app normally
-        app.run(host="localhost", port=3300)
+        app.run(host="0.0.0.0", port=3300)
