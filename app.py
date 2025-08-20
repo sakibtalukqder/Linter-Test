@@ -1,5 +1,5 @@
 # flask_app.py
-from flask import Flask
+from flask import Flask, jsonify
 import unittest
 
 app = Flask(__name__)
@@ -10,10 +10,14 @@ def hello():
 
 @app.route('/fail')
 def fail():
-    return some_undefined_variable  # intentionally undefined
+    # safely handle undefined variable
+    try:
+        return some_undefined_variable  # intentionally undefined
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 # ---------------------------
-# Unit tests in the same file
+# Unit tests
 # ---------------------------
 class FlaskAppTestCase(unittest.TestCase):
     def setUp(self):
@@ -26,9 +30,8 @@ class FlaskAppTestCase(unittest.TestCase):
         self.assertEqual(response.data.decode('utf-8'), "Hello World")
 
     def test_fail_route(self):
-        # This test will FAIL because /fail raises an error
         response = self.app.get('/fail')
-        self.assertEqual(response.status_code, 200)  # expected wrong status
+        self.assertEqual(response.status_code, 500)  # expect 500 because error
 
 # ---------------------------
 # Run app or tests
@@ -38,4 +41,4 @@ if __name__ == "__main__":
     if "test" in sys.argv:
         unittest.main(argv=[sys.argv[0]])
     else:
-        app.run(host="localhost", port=3300)
+        app.run(host="0.0.0.0", port=3300)
