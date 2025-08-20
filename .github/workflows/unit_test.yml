@@ -17,6 +17,6 @@ jobs:
       - name: Install dependencies
         run: |
           docker compose build Unit-Test
-      - name: Run Pylint
+      - name: Run PyTest
         run: |
           docker compose run --rm Unit-Test
