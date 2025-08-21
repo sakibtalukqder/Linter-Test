@@ -1,27 +1,48 @@
 """
-Flask application with unit tests.
+Flask application with unit tests (intentionally vulnerable for CodeQL).
 """
 
 import unittest
-from flask import Flask, jsonify
+import sqlite3
+from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
+# -----------------------
+# Flask routes
+# -----------------------
 @app.route('/')
 def hello():
     """Return a simple Hello World message."""
     return "Hello World"
 
-@app.route('/fail')
-def fail():
-    """Intentionally fail to demonstrate error handling."""
-    try:
-        # some_undefined_variable is intentionally undefined
-        return some_undefined_variable
-    except NameError as e:
-        # specifically catch NameError instead of broad Exception
-        return jsonify({"error": str(e)}), 500
+@app.route('/user')
+def get_user():
+    """
+    Insecure endpoint: vulnerable to SQL injection
+    because it directly concatenates user input.
+    Example: /user?name=admin' OR '1'='1
+    """
+    name = request.args.get("name", "")
+    conn = sqlite3.connect(":memory:")
+    cur = conn.cursor()
+    cur.execute("CREATE TABLE users (name TEXT, role TEXT)")
+    cur.execute("INSERT INTO users VALUES ('admin','superuser')")
+    cur.execute("INSERT INTO users VALUES ('guest','viewer')")
 
+    # 🚨 Vulnerable SQL (CodeQL will catch this)
+    query = f"SELECT role FROM users WHERE name = '{name}'"
+    cur.execute(query)
+    row = cur.fetchone()
+    conn.close()
+
+    if row:
+        return jsonify({"role": row[0]})
+    return jsonify({"error": "User not found"}), 404
+
+# -----------------------
+# Unit tests
+# -----------------------
 class FlaskAppTestCase(unittest.TestCase):
     """Unit tests for Flask application."""
 
@@ -36,10 +57,11 @@ class FlaskAppTestCase(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(response.data.decode('utf-8'), "Hello World")
 
-    def test_fail_route(self):
-        """Test the /fail route returns 500 due to NameError."""
-        response = self.app.get('/fail')
-        self.assertEqual(response.status_code, 500)
+    def test_user_injection(self):
+        """Test /user injection vulnerability."""
+        response = self.app.get("/user?name=admin' OR '1'='1")
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("role", response.get_json())
 
 if __name__ == "__main__":
     import sys
@@ -47,4 +69,3 @@ if __name__ == "__main__":
         unittest.main(argv=[sys.argv[0]])
     else:
         app.run(host="0.0.0.0", port=3300)
-
