@@ -47,4 +47,3 @@ if __name__ == "__main__":
         unittest.main(argv=[sys.argv[0]])
     else:
         app.run(host="0.0.0.0", port=3300)
-
