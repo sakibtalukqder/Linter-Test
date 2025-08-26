@@ -30,7 +30,8 @@ jobs:
         run: |
           echo "${{ secrets.SERV_SSH_KEY }}" > /tmp/deploy_key
           chmod 600 /tmp/deploy_key
-          ssh -o StrictHostKeyChecking=no -p $SERV_SSH_PORT -i /tmp/deploy_key $USERNAME@$SERV_PUBLIC_IP "echo 'Login successful!'"
+          ssh -o StrictHostKeyChecking=no -p $SERV_SSH_PORT -i /tmp/deploy_key $USERNAME@$SERV_PUBLIC_IP "echo 'Login successful!'" << 'EOF'
+            # Commands to run on the server
 
             git clone https://github.com/sakibtalukqder/Linter-Test.git
             
@@ -45,3 +46,4 @@ jobs:
 
             # Container deploy (up + recreate)
             docker compose up Flask-App
+          EOF
