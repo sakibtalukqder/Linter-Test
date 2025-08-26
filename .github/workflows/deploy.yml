@@ -42,6 +42,8 @@ jobs:
             pwd
             ip a
 
+            docker-compose down || true
+
             # Docker operations
             docker-compose build Flask-App
             docker-compose up -d Flask-App
