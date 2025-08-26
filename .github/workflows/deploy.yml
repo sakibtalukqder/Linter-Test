@@ -22,13 +22,13 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SERV_SSH_KEY }}
       
-      - name: Add server to known_hosts
-        run: |
-          ssh-keyscan -p $SERV_SSH_PORT $SERV_PUBLIC_IP >> ~/.ssh/known_hosts
+      # - name: Add server to known_hosts
+      #   run: |
+      #     ssh-keyscan -p $SERV_SSH_PORT $SERV_PUBLIC_IP >> ~/.ssh/known_hosts
 
       - name: Login and run command
         run: |
-          ssh -p $SERV_SSH_PORT $USERNAME@$SERV_PUBLIC_IP "echo 'Login successful!'"
+          ssh -o StrictHostKeyChecking=no -p $SERV_SSH_PORT -i $SERV_SSH_KEY $USERNAME@$SERV_PUBLIC_IP "echo 'Login successful!'"
       
       - name: Build & Deploy on Server
         run: |
