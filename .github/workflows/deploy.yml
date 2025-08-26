@@ -35,10 +35,11 @@ jobs:
       - name: Build & Deploy on Server
         run: |
 
-            cd $APP_DIR
             git clone https://github.com/sakibtalukqder/Linter-Test.git
-            
             git pull origin main
+            
+            cd Linter-Test/
+            ll
 
             # Docker image build
             docker-compose build
