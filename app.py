@@ -19,7 +19,7 @@ def fail():
     """Intentionally fail to demonstrate error handling."""
     try:
         # some_undefined_variable is intentionally undefined
-        return some_undefined_variable  # noqa: F821
+        return some_undefined_variable  # noqa: F8211
     except NameError as e:
         # specifically catch NameError instead of broad Exception
         return jsonify({"error": str(e)}), 500
