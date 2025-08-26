@@ -9,7 +9,7 @@ env:
   SERV_SSH_KEY: ${{ secrets.SERV_SSH_KEY }}
   SERV_SSH_PORT: ${{ secrets.SERV_SSH_PORT }}
   USERNAME: ${{ secrets.USERNAME }}
-  APP_DIR: ~/app
+  APP_DIR: App
 
 jobs:
   deploy:
@@ -34,12 +34,6 @@ jobs:
       
       - name: Build & Deploy on Server
         run: |
-            # IF No App Directory,
-
-            if [ -z "$APP_DIR" ]; then
-              echo "APP_DIR is not set. Exiting."
-              exit 1
-            fi
 
             cd $APP_DIR
             git clone https://github.com/sakibtalukqder/Linter-Test.git
