@@ -21,10 +21,6 @@ jobs:
         uses: webfactory/ssh-agent@v0.7.0
         with:
           ssh-private-key: ${{ secrets.SERV_SSH_KEY }}
-      
-      # - name: Add server to known_hosts
-      #   run: |
-      #     ssh-keyscan -p $SERV_SSH_PORT $SERV_PUBLIC_IP >> ~/.ssh/known_hosts
 
       - name: Login and Deploy
         run: |
