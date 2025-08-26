@@ -28,7 +28,9 @@ jobs:
 
       - name: Login and run command
         run: |
-          ssh -o StrictHostKeyChecking=no -p $SERV_SSH_PORT -i $SERV_SSH_KEY $USERNAME@$SERV_PUBLIC_IP "echo 'Login successful!'"
+          echo "${{ secrets.SERV_SSH_KEY }}" > /tmp/deploy_key
+          chmod 600 /tmp/deploy_key
+          ssh -o StrictHostKeyChecking=no -p $SERV_SSH_PORT -i /tmp/deploy_key $USERNAME@$SERV_PUBLIC_IP "echo 'Login successful!'"
       
       - name: Build & Deploy on Server
         run: |
