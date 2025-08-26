@@ -26,14 +26,11 @@ jobs:
       #   run: |
       #     ssh-keyscan -p $SERV_SSH_PORT $SERV_PUBLIC_IP >> ~/.ssh/known_hosts
 
-      - name: Login and run command
+      - name: Login and Deploy
         run: |
           echo "${{ secrets.SERV_SSH_KEY }}" > /tmp/deploy_key
           chmod 600 /tmp/deploy_key
           ssh -o StrictHostKeyChecking=no -p $SERV_SSH_PORT -i /tmp/deploy_key $USERNAME@$SERV_PUBLIC_IP "echo 'Login successful!'"
-      
-      - name: Build & Deploy on Server
-        run: |
 
             git clone https://github.com/sakibtalukqder/Linter-Test.git
             
