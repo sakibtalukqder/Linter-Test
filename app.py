@@ -10,8 +10,14 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello():
-    """Return a simple Hello World message."""
-    return "Hello World, \n I have successfully deployed a Flask app in a ci/cd pipeline!"
+    """Return a custom deployment message."""
+    return (
+        "Hello World !\n"
+        "I have successfully Deploy this app through ci-cd pipeline\n"
+        "Sakib Talukqder\n"
+        "Assistant Network Engineer\n"
+        "OPL"
+    )
 
 
 @app.route('/fail')
@@ -19,7 +25,7 @@ def fail():
     """Intentionally fail to demonstrate error handling."""
     try:
         # some_undefined_variable is intentionally undefined
-        return some_undefined_variable  # noqa: F8211
+        return some_undefined_variable  # noqa: F821
     except NameError as e:
         # specifically catch NameError instead of broad Exception
         return jsonify({"error": str(e)}), 500
@@ -39,7 +45,11 @@ class FlaskAppTestCase(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(
             response.data.decode('utf-8'),
-            "Hello World, \n I have successfully deployed a Flask app in a ci/cd pipeline!"
+            "Hello World !\n"
+            "I have successfully Deploy this app through ci-cd pipeline\n"
+            "Sakib Talukqder\n"
+            "Assistant Network Engineer\n"
+            "OPL"
         )
 
     def test_fail_route(self):
