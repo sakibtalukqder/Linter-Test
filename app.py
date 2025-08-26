@@ -34,7 +34,7 @@ class FlaskAppTestCase(unittest.TestCase):
         """Test the / route returns 200 and 'Hello World'."""
         response = self.app.get('/')
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.data.decode('utf-8'), "Hello World")
+        self.assertEqual(response.data.decode('utf-8'), "Hello World, \n I have successfully deployed a Flask app in a ci/cd pipeline!")
 
     def test_fail_route(self):
         """Test the /fail route returns 500 due to NameError."""
