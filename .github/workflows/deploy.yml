@@ -39,9 +39,9 @@ jobs:
             
             cd Linter-Test/
             git pull origin main
-
+            ls -la
             # Docker image build
-            docker-compose build
+            docker compose build
 
             # Container deploy (up + recreate)
-            docker-compose up
+            docker compose up
