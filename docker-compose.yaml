@@ -4,8 +4,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      target: Flask-App
     ports:
-      - "5056:5056"
+      - "80:3300"
     volumes:
      - type: bind
        source: .
@@ -32,3 +33,4 @@ services:
      - type: bind
        source: .
        target: /app
+       

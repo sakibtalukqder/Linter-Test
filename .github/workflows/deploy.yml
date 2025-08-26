@@ -3,12 +3,49 @@ on:
   push:
     branches:
       - main
+
+env:
+  SERV_PUBLIC_IP: ${{ secrets.SERV_PUBLIC_IP }}
+  SERV_SSH_KEY: ${{ secrets.SERV_SSH_KEY }}
+  SERV_SSH_PORT: ${{ secrets.SERV_SSH_PORT }}
+  USERNAME: ${{ secrets.USERNAME }}
+  APP_DIR: ~/app
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Deploy Application
+
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.7.0
+        with:
+          ssh-private-key: ${{ secrets.SERV_SSH_KEY }}
+      
+      - name: Add server to known_hosts
         run: |
-          echo "Deploying application..."
-          # Add your deployment commands here
+          ssh-keyscan -p $SERV_SSH_PORT $SERV_PUBLIC_IP >> ~/.ssh/known_hosts
+
+      - name: Login and run command
+        run: |
+          ssh -p $SERV_SSH_PORT $USERNAME@$SERV_PUBLIC_IP "echo 'Login successful!'"
+      
+      - name: Build & Deploy on Server
+        run: |
+            # IF No App Directory,
+
+            if [ -z "$APP_DIR" ]; then
+              echo "APP_DIR is not set. Exiting."
+              exit 1
+            fi
+
+            cd $APP_DIR
+            git clone https://github.com/sakibtalukqder/Linter-Test.git
+            
+            git pull origin main
+
+            # Docker image build
+            docker-compose build
+
+            # Container deploy (up + recreate)
+            docker-compose up
