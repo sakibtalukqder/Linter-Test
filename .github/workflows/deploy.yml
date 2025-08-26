@@ -43,6 +43,6 @@ jobs:
             ip a
 
             # Docker operations
-            docker compose build Flask-App
-            docker compose up -d Flask-App
+            docker-compose build Flask-App
+            docker-compose up -d Flask-App
           EOF
