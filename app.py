@@ -7,18 +7,16 @@ from flask import Flask, jsonify
 
 app = Flask(__name__)
 
-
 @app.route('/')
 def hello():
-    """Return a custom deployment message."""
+    """Return deployment message with multiple lines for browser."""
     return (
-        "Hello World !\n"
-        "I have successfully Deploy this app through ci-cd pipeline\n"
-        "Sakib Talukqder\n"
-        "Assistant Network Engineer\n"
+        "Hello World !<br>"
+        "I have successfully Deploy this app through ci-cd pipeline<br>"
+        "Sakib Talukqder<br>"
+        "Assistant Network Engineer<br>"
         "OPL"
     )
-
 
 @app.route('/fail')
 def fail():
@@ -27,7 +25,6 @@ def fail():
         # some_undefined_variable is intentionally undefined
         return some_undefined_variable  # noqa: F821
     except NameError as e:
-        # specifically catch NameError instead of broad Exception
         return jsonify({"error": str(e)}), 500
 
 
@@ -40,16 +37,12 @@ class FlaskAppTestCase(unittest.TestCase):
         self.app.testing = True
 
     def test_hello(self):
-        """Test the / route returns 200 and the correct message."""
+        """Test the / route returns 200 and the correct multi-line message."""
         response = self.app.get('/')
         self.assertEqual(response.status_code, 200)
         self.assertEqual(
             response.data.decode('utf-8'),
-            "Hello World !\n"
-            "I have successfully Deploy this app through ci-cd pipeline\n"
-            "Sakib Talukqder\n"
-            "Assistant Network Engineer\n"
-            "OPL"
+            "Hello World !<br>I have successfully Deploy this app through ci-cd pipeline<br>Sakib Talukqder<br>Assistant Network Engineer<br>OPL"
         )
 
     def test_fail_route(self):
