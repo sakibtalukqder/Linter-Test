@@ -5,6 +5,7 @@ COPY req.txt /app/
 
 RUN pip install -r req.txt
 
+FROM base as Flask-App
 CMD [ "python", "app.py" ]
 
 FROM base as linter-test
