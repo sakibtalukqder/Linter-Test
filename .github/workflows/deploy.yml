@@ -5,51 +5,11 @@ on:
     branches:
       - main
 
-# env:
-#   SERV_PUBLIC_IP: ${{ secrets.SERV_PUBLIC_IP }}
-#   SERV_SSH_KEY: ${{ secrets.SERV_SSH_KEY }}
-#   SERV_SSH_PORT: ${{ secrets.SERV_SSH_PORT }}
-#   USERNAME: ${{ secrets.USERNAME }}
-#   APP_DIR: App
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
 
-      # - name: Setup SSH
-      #   uses: webfactory/ssh-agent@v0.7.0
-      #   with:
-      #     ssh-private-key: ${{ secrets.SERV_SSH_KEY }}
-
-      # - name: Login and Deploy
-      #   run: |
-      #     echo "${{ secrets.SERV_SSH_KEY }}" > /tmp/deploy_key
-      #     chmod 600 /tmp/deploy_key
-      #     ssh -o StrictHostKeyChecking=no -p $SERV_SSH_PORT -i /tmp/deploy_key $USERNAME@$SERV_PUBLIC_IP << 'EOF'
-      #       echo "Login successful!"
-
-      #       # Git operations
-      #       if [ ! -d "Linter-Test" ]; then
-      #         git clone https://github.com/sakibtalukqder/Linter-Test.git
-      #       fi
-      #       cd Linter-Test
-      #       git pull origin main
-
-      #       # Verify
-      #       ls -la
-      #       hostname
-      #       pwd
-      #       ip a
-
-      #       docker-compose down || true
-
-      #       # Docker operations
-      #       docker-compose build Flask-App
-      #       docker-compose up -d Flask-App
-      #     EOF
-      
       - name: Login and Deploy
         uses: appleboy/ssh-action@v0.1.7
         with:
@@ -74,5 +34,5 @@ jobs:
             docker-compose down || true
 
             # Docker operations
-            docker-compose build Flask-App
-            docker-compose up -d Flask-App
+            sudo docker-compose build Flask-App
+            sudo docker-compose up -d Flask-App
