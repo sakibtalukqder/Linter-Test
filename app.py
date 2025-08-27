@@ -7,6 +7,7 @@ from flask import Flask, jsonify
 
 app = Flask(__name__)
 
+
 @app.route('/')
 def hello():
     """Return deployment message with multiple lines for browser."""
@@ -18,6 +19,7 @@ def hello():
         "Assistant Network Engineer<br>"
         "OnnoRokom Projukti Ltd"
     )
+
 
 @app.route('/fail')
 def fail():
@@ -43,7 +45,14 @@ class FlaskAppTestCase(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(
             response.data.decode('utf-8'),
-            "Hello World !<br>I have successfully Deploy this app through ci-cd pipeline<br>Sakib Talukqder<br>Assistant Network Engineer<br>OPL"
+            (
+                "Hello World !<br>"
+                "I have successfully Deploy this app through ci-cd pipeline<br>"
+                "--------------------------------------------------------------- <br>"
+                "Sakib Talukqder<br>"
+                "Assistant Network Engineer<br>"
+                "OnnoRokom Projukti Ltd"
+            )
         )
 
     def test_fail_route(self):
