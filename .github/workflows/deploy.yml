@@ -17,19 +17,47 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup SSH
-        uses: webfactory/ssh-agent@v0.7.0
-        with:
-          ssh-private-key: ${{ secrets.SERV_SSH_KEY }}
+      # - name: Setup SSH
+      #   uses: webfactory/ssh-agent@v0.7.0
+      #   with:
+      #     ssh-private-key: ${{ secrets.SERV_SSH_KEY }}
 
+      # - name: Login and Deploy
+      #   run: |
+      #     echo "${{ secrets.SERV_SSH_KEY }}" > /tmp/deploy_key
+      #     chmod 600 /tmp/deploy_key
+      #     ssh -o StrictHostKeyChecking=no -p $SERV_SSH_PORT -i /tmp/deploy_key $USERNAME@$SERV_PUBLIC_IP << 'EOF'
+      #       echo "Login successful!"
+
+      #       # Git operations
+      #       if [ ! -d "Linter-Test" ]; then
+      #         git clone https://github.com/sakibtalukqder/Linter-Test.git
+      #       fi
+      #       cd Linter-Test
+      #       git pull origin main
+
+      #       # Verify
+      #       ls -la
+      #       hostname
+      #       pwd
+      #       ip a
+
+      #       docker-compose down || true
+
+      #       # Docker operations
+      #       docker-compose build Flask-App
+      #       docker-compose up -d Flask-App
+      #     EOF
+      
       - name: Login and Deploy
-        run: |
-          echo "${{ secrets.SERV_SSH_KEY }}" > /tmp/deploy_key
-          chmod 600 /tmp/deploy_key
-          ssh -o StrictHostKeyChecking=no -p $SERV_SSH_PORT -i /tmp/deploy_key $USERNAME@$SERV_PUBLIC_IP << 'EOF'
-            echo "Login successful!"
-
-            # Git operations
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.SERV_PUBLIC_IP }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SERV_SSH_KEY }}
+          port: ${{ secrets.SERV_SSH_PORT }}
+          script: |
+           # Git operations
             if [ ! -d "Linter-Test" ]; then
               git clone https://github.com/sakibtalukqder/Linter-Test.git
             fi
@@ -47,4 +75,3 @@ jobs:
             # Docker operations
             docker-compose build Flask-App
             docker-compose up -d Flask-App
-          EOF
