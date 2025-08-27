@@ -1,15 +1,16 @@
 name: Deploy to Production
 on:
   push:
+  pull_request:
     branches:
       - main
 
-env:
-  SERV_PUBLIC_IP: ${{ secrets.SERV_PUBLIC_IP }}
-  SERV_SSH_KEY: ${{ secrets.SERV_SSH_KEY }}
-  SERV_SSH_PORT: ${{ secrets.SERV_SSH_PORT }}
-  USERNAME: ${{ secrets.USERNAME }}
-  APP_DIR: App
+# env:
+#   SERV_PUBLIC_IP: ${{ secrets.SERV_PUBLIC_IP }}
+#   SERV_SSH_KEY: ${{ secrets.SERV_SSH_KEY }}
+#   SERV_SSH_PORT: ${{ secrets.SERV_SSH_PORT }}
+#   USERNAME: ${{ secrets.USERNAME }}
+#   APP_DIR: App
 
 jobs:
   deploy:
@@ -68,7 +69,7 @@ jobs:
             ls -la
             hostname
             pwd
-            ip a
+            ip a | grep inet
 
             docker-compose down || true
 
