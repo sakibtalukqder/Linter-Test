@@ -1,6 +1,6 @@
 services:
   Flask-App:
-    image: flask-app
+    image: sakibtalukqder/flask-app:latest
     build:
       context: .
       dockerfile: Dockerfile
@@ -33,4 +33,3 @@ services:
      - type: bind
        source: .
        target: /app
-       
