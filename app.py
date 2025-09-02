@@ -7,20 +7,29 @@ from flask import Flask, jsonify
 
 app = Flask(__name__)
 
+
 @app.route('/')
 def hello():
-    """Return a simple Hello World message."""
-    return "Hello World"
+    """Return deployment message with multiple lines for browser."""
+    return (
+        "Hello World !<br>"
+        "I have successfully Deploy this app through ci-cd pipeline<br>"
+        "--------------------------------------------------------------- <br>"
+        "Sakib Talukqder<br>"
+        "ANE <br>"
+        "OnnoRokom Projukti Ltd"
+    )
+
 
 @app.route('/fail')
 def fail():
     """Intentionally fail to demonstrate error handling."""
     try:
         # some_undefined_variable is intentionally undefined
-        return some_undefined_variable
+        return some_undefined_variable  # noqa: F821
     except NameError as e:
-        # specifically catch NameError instead of broad Exception
         return jsonify({"error": str(e)}), 500
+
 
 class FlaskAppTestCase(unittest.TestCase):
     """Unit tests for Flask application."""
@@ -31,15 +40,29 @@ class FlaskAppTestCase(unittest.TestCase):
         self.app.testing = True
 
     def test_hello(self):
-        """Test the / route returns 200 and 'Hello World'."""
+        """Test the / route returns 200 and the correct multi-line message."""
         response = self.app.get('/')
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.data.decode('utf-8'), "Hello World")
+        self.assertEqual(
+            response.data.decode('utf-8'),
+            (
+                "Hello World !<br>"
+                "I have successfully Deploy this app through ci-cd pipeline<br>"
+                "--------------------------------------------------------------- <br>"
+                "Sakib Talukqder<br>"
+                "ANE <br>"
+                "OnnoRokom Projukti Ltd"
+            )
+        )
 
     def test_fail_route(self):
         """Test the /fail route returns 500 due to NameError."""
         response = self.app.get('/fail')
         self.assertEqual(response.status_code, 500)
+        data = response.get_json()
+        self.assertIn("error", data)
+        self.assertIn("some_undefined_variable", data["error"])
+
 
 if __name__ == "__main__":
     import sys

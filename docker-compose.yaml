@@ -1,11 +1,12 @@
 services:
   Flask-App:
-    image: flask-app
+    image: sakibtalukqder/flask-app:latest
     build:
       context: .
       dockerfile: Dockerfile
+      target: Flask-App
     ports:
-      - "5056:5056"
+      - "80:3300"
     volumes:
      - type: bind
        source: .

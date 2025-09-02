@@ -1,0 +1,27 @@
+name: Deploy to Production
+on:
+  workflow_run:
+    workflows: ["Build"]
+    types:
+      - completed
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Login and Deploy
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.SERV_PUBLIC_IP }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SERV_SSH_KEY }}
+          port: ${{ secrets.SERV_SSH_PORT }}
+          script: |
+            # Docker commands to pull and run the latest image
+            docker stop Flask-App || true
+            docker rm Flask-App || true
+            docker pull sakibtalukqder/flask-app:latest
+            docker start Flask-App || docker run -d -p 80:3300 --name Flask-App sakibtalukqder/flask-app:latest
