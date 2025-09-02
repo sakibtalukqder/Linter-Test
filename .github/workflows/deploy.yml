@@ -1,37 +1,37 @@
-name: Deploy to Production
-on:
-  push:
-    branches:
-      - main
+# name: Deploy to Production
+# on:
+#   push:
+#     branches:
+#       - main
 
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
+# jobs:
+#   deploy:
+#     runs-on: ubuntu-latest
+#     steps:
 
-      - name: Login and Deploy
-        uses: appleboy/ssh-action@v0.1.7
-        with:
-          host: ${{ secrets.SERV_PUBLIC_IP }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.SERV_SSH_KEY }}
-          port: ${{ secrets.SERV_SSH_PORT }}
-          script: |
-           # Git operations
-            if [ ! -d "Linter-Test" ]; then
-              git clone https://github.com/sakibtalukqder/Linter-Test.git
-            fi
-            cd Linter-Test
-            git pull origin main
+#       - name: Login and Deploy
+#         uses: appleboy/ssh-action@v0.1.7
+#         with:
+#           host: ${{ secrets.SERV_PUBLIC_IP }}
+#           username: ${{ secrets.USERNAME }}
+#           key: ${{ secrets.SERV_SSH_KEY }}
+#           port: ${{ secrets.SERV_SSH_PORT }}
+#           script: |
+#            # Git operations
+#             if [ ! -d "Linter-Test" ]; then
+#               git clone https://github.com/sakibtalukqder/Linter-Test.git
+#             fi
+#             cd Linter-Test
+#             git pull origin main
 
-            # Verify
-            ls -la
-            hostname
-            pwd
-            ip a | grep inet
+#             # Verify
+#             ls -la
+#             hostname
+#             pwd
+#             ip a | grep inet
 
-            docker-compose down || true
+#             docker-compose down || true
 
-            # Docker operations
-            docker-compose build Flask-App
-            docker-compose up -d Flask-App
+#             # Docker operations
+#             docker-compose build Flask-App
+#             docker-compose up -d Flask-App
