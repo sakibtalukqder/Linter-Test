@@ -5,12 +5,8 @@ services:
       context: .
       dockerfile: Dockerfile
       target: Flask-App
-    ports:
-      - "80:3300"
-    volumes:
-     - type: bind
-       source: .
-       target: /app
+    expose:
+      - "3300"
 
   Linter-Test:
     image: linter-test
@@ -33,3 +29,17 @@ services:
      - type: bind
        source: .
        target: /app
+
+  Local-Dev:
+    image: local-dev
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: Local-Dev
+    volumes:
+     - type: bind
+       source: .
+       target: /app
+    ports:
+      - "80:3300"
