@@ -1,0 +1,45 @@
+services:
+  Flask-App:
+    image: sakibtalukqder/flask-app:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: Flask-App
+    expose:
+      - "3300"
+
+  Linter-Test:
+    image: linter-test
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: Linter-Test
+    volumes:
+     - type: bind
+       source: .
+       target: /app
+
+  Unit-Test:
+    image: unit-test
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: unit-test
+    volumes:
+     - type: bind
+       source: .
+       target: /app
+
+  Local-Dev:
+    image: local-dev
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: Local-Dev
+    volumes:
+     - type: bind
+       source: .
+       target: /app
+    ports:
+      - "80:3300"
