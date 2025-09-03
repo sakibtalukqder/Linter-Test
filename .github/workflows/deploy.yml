@@ -23,4 +23,4 @@ jobs:
             # Docker commands to pull and run the latest image
             docker stop App || true
             docker pull sakibtalukqder/flask-app:latest
-            docker run --rm -it --name App sakibtalukqder/flask-app:latest
+            docker run --rm -it --name App -p 80:3300 sakibtalukqder/flask-app:latest
