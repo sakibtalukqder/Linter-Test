@@ -22,7 +22,7 @@ jobs:
           script: |
             # Docker commands to pull and run the latest image
             docker pull sakibtalukqder/flask-app:latest
-            docker stop fApp || true
-            docker rm fApp || true
+            # docker stop fApp || true
+            docker rm -f fApp || true
             docker run -d -p 80:3300 --name fApp sakibtalukqder/flask-app:latest
             
