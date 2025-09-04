@@ -33,9 +33,14 @@ def hello():
                 padding: 30px;
                 border-radius: 15px;
                 box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-                text-align: center;
-                width: 500px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                max-width: 700px;
                 animation: fadeIn 1.2s ease-in-out;
+            }
+            .card .text {
+                max-width: 50%;
             }
             .card h1 {
                 color: #2b5876;
@@ -49,24 +54,44 @@ def hello():
                 border-top: 2px dashed #6a11cb;
                 margin: 15px 0;
             }
+            .card img {
+                max-width: 200px;
+                border-radius: 10px;
+            }
             @keyframes fadeIn {
                 from { opacity: 0; transform: translateY(20px); }
                 to { opacity: 1; transform: translateY(0); }
+            }
+            @media (max-width: 768px) {
+                .card {
+                    flex-direction: column;
+                    text-align: center;
+                }
+                .card .text, .card img {
+                    max-width: 100%;
+                }
+                .card img {
+                    margin-top: 20px;
+                }
             }
         </style>
     </head>
     <body>
         <div class="card">
-            <h1>🚀 Hello World!</h1>
-            <p>I have successfully deployed this app through CI/CD pipeline 🎉</p>
-            <div class="line"></div>
-            <p><b>Sakib Talukqder</b></p>
-            <p>ANE</p>
-            <p>DevOps & Networks</p>
-            <p>OnnoRokom Projukti Ltd</p>
+            <div class="text">
+                <h1>🚀 Hello World!</h1>
+                <p>I have successfully deployed this app through CI/CD pipeline 🎉</p>
+                <div class="line"></div>
+                <p><b>Sakib Talukqder</b></p>
+                <p>ANE</p>
+                <p>DevOps & Networks</p>
+                <p>OnnoRokom Projukti Ltd</p>
+            </div>
+            <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" alt="Deployment GIF">
         </div>
     </body>
     </html>
+
     """
 
 
