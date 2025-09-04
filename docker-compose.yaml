@@ -6,8 +6,8 @@ services:
       dockerfile: Dockerfile
       target: Flask-App
     expose:
-      - "3300"
-
+      - 3300
+      
   Linter-Test:
     image: linter-test
     build:

@@ -21,6 +21,8 @@ jobs:
           port: ${{ secrets.SERV_SSH_PORT }}
           script: |
             # Docker commands to pull and run the latest image
-            docker stop App || true
             docker pull sakibtalukqder/flask-app:latest
-            docker run --rm -it --name App -p 80:3300 sakibtalukqder/flask-app:latest
+            docker stop fApp || true
+            docker rm fApp || true
+            docker run -d -p 80:3300 --name fApp sakibtalukqder/flask-app:latest
+            
