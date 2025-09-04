@@ -7,7 +7,7 @@ services:
       target: Flask-App
     expose:
       - 3300
-
+      
   Linter-Test:
     image: linter-test
     build:
@@ -29,3 +29,17 @@ services:
      - type: bind
        source: .
        target: /app
+
+  Local-Dev:
+    image: local-dev
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: Local-Dev
+    volumes:
+     - type: bind
+       source: .
+       target: /app
+    ports:
+      - "80:3300"

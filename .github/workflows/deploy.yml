@@ -25,3 +25,4 @@ jobs:
             docker stop fApp || true
             docker rm fApp || true
             docker run -d -p 80:3300 --name fApp sakibtalukqder/flask-app:latest
+            

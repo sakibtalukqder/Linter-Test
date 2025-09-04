@@ -5,6 +5,8 @@ COPY req.txt /app/
 
 RUN pip install -r req.txt
 
+COPY . /app
+
 FROM base as Flask-App
 CMD [ "python", "app.py" ]
 
@@ -17,3 +19,7 @@ FROM base as unit-test
 
 RUN pip install pytest
 CMD [ "pytest","app.py" ]
+
+FROM base as Local-Dev
+
+CMD [ "python", "app.py" ]
