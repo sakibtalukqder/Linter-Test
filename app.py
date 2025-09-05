@@ -55,7 +55,7 @@ def hello():
                 margin: 15px 0;
             }
             .card img {
-                max-width: 200px;
+                max-width: 220px;
                 border-radius: 10px;
             }
             @keyframes fadeIn {
@@ -87,10 +87,11 @@ def hello():
                 <p>DevOps & Networks</p>
                 <p>OnnoRokom Projukti Ltd</p>
             </div>
-            <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif" alt="Deployment GIF">
+            <img src="https://undraw.co/api/illustrations/code_thinking.svg" alt="Boy Coding Illustration">
         </div>
     </body>
     </html>
+
 
     """
 
