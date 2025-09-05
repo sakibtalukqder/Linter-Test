@@ -1,28 +1,28 @@
-# name: Deploy to Production
-# on:
-#   workflow_run:
-#     workflows: ["Build"]
-#     types:
-#       - completed
-#     branches:
-#       - main
+name: Deploy to Production
+on:
+  workflow_run:
+    workflows: ["Build"]
+    types:
+      - completed
+    branches:
+      - main
 
-# jobs:
-#   deploy:
-#     runs-on: ubuntu-latest
-#     steps:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
 
-#       - name: Login and Deploy
-#         uses: appleboy/ssh-action@v0.1.7
-#         with:
-#           host: ${{ secrets.SERV_PUBLIC_IP }}
-#           username: ${{ secrets.USERNAME }}
-#           key: ${{ secrets.SERV_SSH_KEY }}
-#           port: ${{ secrets.SERV_SSH_PORT }}
-#           script: |
-#             # Docker commands to pull and run the latest image
-#             docker pull sakibtalukqder/flask-app:latest
-#             # docker stop fApp || true
-#             docker rm -f fApp || true
-#             docker run -d -p 80:3300 --name fApp sakibtalukqder/flask-app:latest
+      - name: Login and Deploy
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.SERV_PUBLIC_IP }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SERV_SSH_KEY }}
+          port: ${{ secrets.SERV_SSH_PORT }}
+          script: |
+            # Docker commands to pull and run the latest image
+            docker pull sakibtalukqder/flask-app:latest
+            # docker stop fApp || true
+            docker rm -f fApp || true
+            docker run -d -p 80:3300 --name fApp sakibtalukqder/flask-app:latest
             
