@@ -5,8 +5,7 @@ import HashLoader from "react-spinners/HashLoader";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-// const baseUrl = "http://localhost:2024"
-const baseUrl = "https://frienemie-phoenbook.onrender.com"
+const baseUrl = import.meta.env.VITE_API_URL;
 
 const Register = () => {
 

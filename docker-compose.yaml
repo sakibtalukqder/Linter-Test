@@ -1,0 +1,24 @@
+services:
+  server:
+    build: ./Server
+    ports:
+      - "2024:2024"
+    env_file:
+      - ./Server/.env
+    volumes:
+      - ./Server:/app
+    command: nodemon server.js
+  clint:
+    build: ./Clint
+    ports:
+      - "5173:5173"
+    env_file:
+      - ./Clint/.env
+    volumes:
+      - ./Clint:/app
+    command: npm run dev
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    ports:
+      - "27017:27017"

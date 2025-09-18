@@ -4,6 +4,7 @@ WORKDIR /app
 COPY package*.json ./
 
 RUN npm install
+RUN npm install nodemon -g
 COPY . .
-EXPOSE 5173
-CMD ["npm", "start", "--", "--host", "0.0.0.0"]
+EXPOSE 2024
+CMD ["npm", "start"]

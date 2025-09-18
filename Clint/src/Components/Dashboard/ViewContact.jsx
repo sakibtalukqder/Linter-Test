@@ -6,8 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import imgUrl from '../../assets/Img/Untitled.png';
 
 
-// const baseUrl = "http://localhost:2024"
-const baseUrl = "https://frienemie-phoenbook.onrender.com"
+const baseUrl = import.meta.env.VITE_API_URL;
 
 
 const ViewContact = () => {
