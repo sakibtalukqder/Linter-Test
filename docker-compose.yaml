@@ -3,20 +3,20 @@ services:
     build: ./Server
     ports:
       - "2024:2024"
-    env_file:
-      - ./Server/.env
+    environment:
+      - Url=mongodb://172.17.0.4:27017/testFrienemie
     volumes:
       - ./Server:/app
-    command: nodemon server.js
+    command: npm start
   clint:
     build: ./Clint
     ports:
       - "5173:5173"
-    env_file:
-      - ./Clint/.env
+    environment:
+      - VITE_API_URL=http://localhost:2024
     volumes:
       - ./Clint:/app
-    command: npm run dev
+    command: npm start
   mongo:
     image: mongo:latest
     container_name: mongo
