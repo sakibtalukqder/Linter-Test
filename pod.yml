@@ -6,13 +6,40 @@ metadata:
     app: nginx
 
 spec:
+
   containers:
-    - name: load-balancer
+    - name: nginx
       image: nginx
       ports:
         - containerPort: 80
+      resources:
+        requests:
+          memory: "400Mi"
+          cpu: "100m"
+        limits:
+          memory: "500Mi"
+          cpu: "700m"
+      volumeMounts:
+        - name: app-code
+          mountPath: /app
     
-    - name: app-client
-      image: frienemie-server
-      ports:
-        - containerPort: 5173
+    # sidecar container 
+    # - name: server
+    #   image: app-server
+    #   imagePullPolicy: IfNotPresent
+    #   ports:
+    #     - containerPort: 2024
+
+  # Init Container 
+  initContainers:
+    - name: clone-app
+      image: ubuntu:latest
+      command: ['/bin/sh', '-c']
+      args: ["echo 'Cloning app...' >> /app/File.txt "]
+      volumeMounts:
+        - name: app-code
+          mountPath: /app
+
+  volumes: 
+    - name: app-code
+      emptyDir: {}
