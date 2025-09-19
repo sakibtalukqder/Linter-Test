@@ -1,22 +1,29 @@
 services:
   server:
-    build: ./Server
+    image: app-server
+    build: 
+      context: ./Server
     ports:
       - "2024:2024"
     environment:
-      - Url=mongodb://172.17.0.4:27017/testFrienemie
+      - Url=mongodb://mongo:27017/testFrienemie
     volumes:
       - ./Server:/app
     command: npm start
-  clint:
-    build: ./Clint
+
+  clint-dev:
+    image: app-clint-dev
+    build: 
+      context: ./Clint
+      target: dev
     ports:
       - "5173:5173"
     environment:
       - VITE_API_URL=http://localhost:2024
-    volumes:
-      - ./Clint:/app
-    command: npm start
+    # volumes:
+    #   - ./Clint:/app
+    command: npm start -- --host 0.0.0.0
+
   mongo:
     image: mongo:latest
     container_name: mongo

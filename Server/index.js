@@ -19,14 +19,13 @@ server,{
     }
 }
 
-
 // Connect to mongo DB
 const mongoose = require('mongoose')
 
 const ConnectDb = async() => {
     await mongoose.connect(process.env.Url)
     .then(()=>{
-        console.log('Connected To The Database')
+        console.log(`Connected To The Database ${process.env.Url}`);
     }).catch((Error)=>{
         console.log(Error);
     })
@@ -44,5 +43,5 @@ app.get('/',(req,res) => {
 })
 
 app.listen(process.env.Port,() => {
-    console.log(`Express Port Running`)
+    console.log(`Express Port Running at ${process.env.Port}`);
 });
