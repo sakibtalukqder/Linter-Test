@@ -22,6 +22,29 @@ spec:
       volumeMounts:
         - name: app-code
           mountPath: /app
+
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: machine-type
+                operator: In
+                values:
+                  - xlarge
+                  - xxlarge
+          - matchExpressions:
+              - key: machine-zone 
+                operator: In
+                values: 
+                  - usa 
+                  - europe
+                  - asia
+      # preferredDuringSchedulingIgnoredDuringExecution:
+    
+  # node Selector 
+  # nodeSelector:
+  #   machine-type: xlarge
     
     # sidecar container 
     # - name: server
@@ -31,15 +54,27 @@ spec:
     #     - containerPort: 2024
 
   # Init Container 
-  initContainers:
-    - name: clone-app
-      image: ubuntu:latest
-      command: ['/bin/sh', '-c']
-      args: ["echo 'Cloning app...' >> /app/File.txt "]
-      volumeMounts:
-        - name: app-code
-          mountPath: /app
+  # initContainers:
+  #   - name: clone-app
+  #     image: ubuntu:latest
+  #     command: ['/bin/sh', '-c']
+  #     args: ["echo 'Cloning app...' >> /app/File.txt "]
+  #     volumeMounts:
+  #       - name: app-code
+  #         mountPath: /app
 
+  # Taint X Tolerance 
+  # tolerations:
+  #   - key: "app"
+  #     operator: "Equal"
+  #     value: "nginx"
+  #     effect: "NoSchedule"
+    
   volumes: 
     - name: app-code
       emptyDir: {}
+
+
+
+# Test Nano
+# Test Nano --02
